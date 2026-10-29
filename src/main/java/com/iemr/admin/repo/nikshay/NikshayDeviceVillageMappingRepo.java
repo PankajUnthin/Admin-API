@@ -1,5 +1,6 @@
 package com.iemr.admin.repo.nikshay;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -60,4 +61,28 @@ public interface NikshayDeviceVillageMappingRepo extends CrudRepository<NikshayD
 	List<Object[]> findPhiByLocation(@Param("stateId") Integer stateId, @Param("districtId") Integer districtId,
 			@Param("tbuId") Integer tbuId, @Param("facilityId") Integer facilityId,
 			@Param("villageId") Integer villageId, @Param("deviceName") String deviceName);
+
+	/**
+	 * §4.2 — active NAAT device(s) for each village. May return >1 row per village (config error);
+	 * the service groups by villageId and holds the beneficiary with DEVICE_CONFIG_MISSING when
+	 * the count is 0 or >1.
+	 */
+//	@Query(value = """
+//            SELECT m.village_id   AS villageId,
+//                   m.facility_id  AS facilityId,
+//                   m.tbu_id       AS tbuId,
+//                   c.id           AS deviceConfigId,
+//                   c.device_id    AS deviceId,
+//                   c.phi_user_id  AS phiUserId,
+//                   c.password     AS encryptedPassword
+//            FROM   m_nikshay_device_village_mapping m
+//            JOIN   m_nikshay_device_configuration c ON c.id = m.device_detail_id
+//            WHERE  m.village_id IN (:villageIds)
+//              AND  m.is_active = 1
+//              AND  c.is_active = 1
+//              AND  c.device_name = :deviceName
+//            ORDER BY m.village_id, c.id
+//            """, nativeQuery = true)
+//	List<DeviceVillageRow> findActiveDevicesForVillages(@Param("villageIds") Collection<Integer> villageIds,
+//														@Param("deviceName") String deviceName);
 }

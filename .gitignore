@@ -44,3 +44,10 @@ node_modules
 
 # Logs
 logs/
+# nikshay-enroll local/generated files
+nikshay-enroll/.env
+nikshay-enroll/resources/location-master.json
+*.api-results.csv
+test-results/
+playwright-report/
+playwright/.cache/

@@ -1,5 +1,6 @@
 package com.iemr.admin.repo.nikshay;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -48,4 +49,7 @@ public interface NikshayTransferOutPhiRepo extends CrudRepository<NikshayTransfe
 			+ "order by v.VillageName, v.NikshayVillageID", nativeQuery = true)
 	List<Object[]> findVillagesWithoutDesignatedPhi(@Param("villageId") Integer villageId,
 			@Param("tbuId") Integer tbuId, @Param("districtId") Integer districtId);
+
+	List<NikshayTransferOutPhiVillageMapping> findByVillageIdInAndStatusIgnoreCase(Collection<Integer> villageIds,
+                                                                                   String status);
 }

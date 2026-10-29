@@ -30,6 +30,9 @@ import lombok.Data;
 @Table(name = "m_nikshay_device_configuration")
 public class NikshayDeviceConfiguration {
 
+	public static final String DEVICE_NAAT = "NAAT";
+	public static final String DEVICE_XRAY = "XRAY";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Expose
